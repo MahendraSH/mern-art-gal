@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scrollbar-width: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: s;
+  font: "roboto";
+}
+h1 {
+  font: "Droid Sans";
+}
+h2 {
+  font: "Droid Sans";
+}
