@@ -1,11 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface GalleryListProps {
-  
-}
+interface GalleryListProps {}
 
-const GalleryList: FC<GalleryListProps> = ({}) => {
-  return <div>GalleryList</div>
-}
+const GalleryList: FC<GalleryListProps> = () => {
+  return <div>GalleryList</div>;
+};
 
-export default GalleryList
+export default GalleryList;

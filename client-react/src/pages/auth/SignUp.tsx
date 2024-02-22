@@ -32,7 +32,7 @@ const formSchema = z
 
 interface SignUpProps {}
 
-const SignUp: FC<SignUpProps> = ({}) => {
+const SignUp: FC<SignUpProps> = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({

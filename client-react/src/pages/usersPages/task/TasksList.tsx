@@ -1,11 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface TasksListProps {
-  
-}
+interface TasksListProps {}
 
-const TasksList: FC<TasksListProps> = ({}) => {
-  return <div>TasksList</div>
-}
+const TasksList: FC<TasksListProps> = () => {
+  return <div>TasksList</div>;
+};
 
-export default TasksList
+export default TasksList;

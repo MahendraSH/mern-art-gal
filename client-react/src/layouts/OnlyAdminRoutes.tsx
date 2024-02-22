@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 interface OnlyAdminRoutesProps {}
 
-const OnlyAdminRoutes: FC<OnlyAdminRoutesProps> = ({}) => {
+const OnlyAdminRoutes: FC<OnlyAdminRoutesProps> = () => {
   return (
     <div>
       <Outlet />

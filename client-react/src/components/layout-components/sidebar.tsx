@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 interface SidebarProps {}
 
-const Sidebar: FC<SidebarProps> = ({}) => {
+const Sidebar: FC<SidebarProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

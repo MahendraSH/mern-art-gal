@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Outlet } from "react-router-dom";
 interface AuthLayoutProps {}
 
-const AuthLayout: FC<AuthLayoutProps> = ({}) => {
+const AuthLayout: FC<AuthLayoutProps> = () => {
   return (
     <div className="bg-gradient-to-br from-primary/15 via-secondary/15   to-muted   ">
       <AuthNavbar />

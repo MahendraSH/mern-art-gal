@@ -1,14 +1,14 @@
 import AvatarDropDown from "@/components/layout-components/avatar-drop-down";
-import Sidebar from "@/components/layout-components/sidebar";
 import { Button } from "@/components/ui/button";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 interface NavbarProps {}
 
-const Navbar: FC<NavbarProps> = ({}) => {
+const Navbar: FC<NavbarProps> = () => {
   const isScrolled = useScrollTop();
 
   return (
@@ -19,7 +19,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
           isScrolled && " border-b-2"
         )}
       >
-        <div className="ml-3 "></div>
+        <div className="ml-3 ">
+          <Logo />
+        </div>
         <div className=" flex md:gap-x-5 gap-x-3  mr-5">
           <>
             <Link to="/auth/sign-in">
@@ -27,11 +29,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
                 Sign In
               </Button>
             </Link>
-            <Link to={"/auth/sign-up"}>
-              <Button variant={"gradient"} size={"default"}>
-                Create An Account
-              </Button>
-            </Link>
+           
           </>
           <>
             <AvatarDropDown />

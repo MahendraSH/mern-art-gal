@@ -1,11 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface BlogListProps {
-  
-}
+interface BlogListProps {}
 
-const BlogList: FC<BlogListProps> = ({}) => {
-  return <div>BlogList</div>
-}
+const BlogList: FC<BlogListProps> = () => {
+  return <div>BlogList</div>;
+};
 
-export default BlogList
+export default BlogList;

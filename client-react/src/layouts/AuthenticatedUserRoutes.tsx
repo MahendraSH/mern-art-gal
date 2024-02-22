@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 interface AuthenticatedUserRoutesProps {}
 
-const AuthenticatedUserRoutes: FC<AuthenticatedUserRoutesProps> = ({}) => {
+const AuthenticatedUserRoutes: FC<AuthenticatedUserRoutesProps> = () => {
   return (
     <div>
       <Outlet />

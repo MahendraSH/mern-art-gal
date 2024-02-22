@@ -1,11 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface DashboardProps {
-  
-}
+interface DashboardProps {}
 
-const Dashboard: FC<DashboardProps> = ({}) => {
-  return <div>Dashboard</div>
-}
+const Dashboard: FC<DashboardProps> = () => {
+  return <div>Dashboard</div>;
+};
 
-export default Dashboard
+export default Dashboard;
