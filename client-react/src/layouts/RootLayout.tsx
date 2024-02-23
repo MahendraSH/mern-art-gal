@@ -7,8 +7,7 @@ interface RootLayoutProps {}
 
 const RootLayout: FC<RootLayoutProps> = () => {
   return (
-    <div>
-      {/* className=" bg-gradient-to-tr from-primary/20 to-secondary/15 " */}
+    <div className="">
       <Navbar />
       <Outlet />
       <Footer />
