@@ -12,7 +12,7 @@ interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
   const isScrolled = useScrollTop();
-  const { isLoading, data: user } = useGetProfileDetailsQuery();
+  const { isLoading, data: user, isSuccess } = useGetProfileDetailsQuery();
   return (
     <>
       <div
@@ -32,7 +32,7 @@ const Navbar: FC<NavbarProps> = () => {
             </>
           ) : (
             <>
-              {user?.user._id ? (
+              {isSuccess ? (
                 <>
                   <AvatarDropDown user={user} />
                 </>

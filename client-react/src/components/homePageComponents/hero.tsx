@@ -35,7 +35,7 @@ const Hero: FC<HeroProps> = ({ user, isSuccess = false }) => {
               <Card>
                 <CardDescription className="space-x-2">
                   Well Come to {siteConfig.name},
-                  <span className=" space-x-2">{user?.user.userName}</span>
+                  <span className=" space-x-2">{user?.user.email}</span>
                 </CardDescription>
               </Card>
             ) : (
