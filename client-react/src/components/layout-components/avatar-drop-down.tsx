@@ -13,6 +13,7 @@ import { getErrorMessage } from "@/lib/utils";
 import { UserType } from "@/types/user";
 import { FC } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 interface AvatarDropDownProps {
@@ -45,7 +46,9 @@ const AvatarDropDown: FC<AvatarDropDownProps> = ({ user }) => {
         <DropdownMenuContent className="  mr-4 w-40">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-muted-foreground" />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <Link to={"/me/profile"}>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+          </Link>
           <DropdownMenuItem className=" items-center align-middle">
             <span className=" text-xs  mr-auto"> Theme </span>
             <span className=" mr-2">
@@ -53,7 +56,9 @@ const AvatarDropDown: FC<AvatarDropDownProps> = ({ user }) => {
             </span>
           </DropdownMenuItem>
           {user.user.role === "admin" && (
-            <DropdownMenuItem> Admin Dashboard </DropdownMenuItem>
+            <Link to={"/admin/dashboard"}>
+              <DropdownMenuItem> Admin Dashboard </DropdownMenuItem>
+            </Link>
           )}
           <DropdownMenuItem onClick={handleLogoutUser}>Logout</DropdownMenuItem>
         </DropdownMenuContent>

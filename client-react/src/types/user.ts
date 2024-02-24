@@ -9,9 +9,7 @@ export interface UserType {
       url: string;
     };
     role: "user" | "admin";
-    timestamps: {
-      createdAt: Date;
-      updatedAt: Date;
-    };
+    createdAt: string;
+    updatedAt: string;
   };
 }

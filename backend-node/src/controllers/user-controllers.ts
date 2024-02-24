@@ -2,10 +2,10 @@ import ErrorHandler from "../utils/error-handler";
 
 import { AsyncError } from "../middlewares/async-error-middleware";
 
-import userModel, { UserDocument } from "../models/user-model";
-import { NextFunction, Request, Response } from "express";
-import jwtCookie from "../utils/jwt-cookie-maker";
 import cloudinary from "cloudinary";
+import { NextFunction, Request, Response } from "express";
+import userModel, { UserDocument } from "../models/user-model";
+import jwtCookie from "../utils/jwt-cookie-maker";
 
 export const loginUser = AsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -246,7 +246,7 @@ export const logoutUser = AsyncError(
       secure: true,
       sameSite: "none",
     });
-    res.status(200).json({ success: true, message: "logout successful " });
+    res.status(200).json({ success: true,  user: null , message: "logout successful " });
   }
 );
 
