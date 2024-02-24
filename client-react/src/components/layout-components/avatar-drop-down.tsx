@@ -22,7 +22,7 @@ interface AvatarDropDownProps {
 const AvatarDropDown: FC<AvatarDropDownProps> = ({ user }) => {
   const [LogoutUser, { isError, error, isSuccess }] = useLogoutUserMutation();
   const handleLogoutUser = () => {
-    LogoutUser(null);
+    LogoutUser();
   };
 
   if (isError) {

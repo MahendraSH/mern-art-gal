@@ -10,13 +10,19 @@ export const authApi = createApi({
     timeout: 10000,
   }),
   reducerPath: "authApi",
+  tagTypes: ["auth"],
   endpoints: (build) => ({
+    getProfileDetails: build.query<UserType, void>({
+      query: () => ({
+        url: "/me",
+      }),
+      providesTags: ["auth"],
+    }),
     loginUser: build.mutation<UserType, { email: string; password: string }>({
       query: ({ email, password }) => ({
         url: "/login",
         method: "POST",
         body: { email, password },
-        invalidatesTags: ["profile"],
       }),
     }),
     registerUser: build.mutation<
@@ -27,23 +33,15 @@ export const authApi = createApi({
         url: "/register",
         method: "POST",
         body: { email, password, userName },
-        invalidatesTags: ["profile"],
       }),
     }),
 
-    logoutUser: build.mutation<UserType, null>({
+    logoutUser: build.mutation<UserType, void>({
       query: () => ({
         url: "/logout",
         method: "POST",
-        invalidatesTags: ["profile"],
       }),
-    }),
-    getProfileDetails: build.query<UserType, null>({
-      query: () => ({
-        url: "/me",
-
-        providesTags: ["profile"],
-      }),
+      invalidatesTags: ["auth"],
     }),
   }),
 });

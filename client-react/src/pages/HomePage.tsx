@@ -6,7 +6,7 @@ import { FC } from "react";
 interface HomePageProps {}
 
 const HomePage: FC<HomePageProps> = () => {
-  const { isLoading, data, isSuccess } = useGetProfileDetailsQuery(null);
+  const { isLoading, data, isSuccess } = useGetProfileDetailsQuery();
 
   if (isLoading) {
     return (

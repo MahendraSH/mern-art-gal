@@ -9,7 +9,7 @@ import { Navigate, Outlet } from "react-router-dom";
 interface AuthenticatedUserRoutesProps {}
 
 const AuthenticatedUserRoutes: FC<AuthenticatedUserRoutesProps> = () => {
-  const { isLoading, isError, isSuccess } = useGetProfileDetailsQuery(null);
+  const { isLoading, isError, isSuccess } = useGetProfileDetailsQuery();
   if (isLoading) {
     return (
       <div className=" w-full h-full flex justify-center items-center">

@@ -8,7 +8,7 @@ import { Navigate, Outlet } from "react-router-dom";
 interface AuthLayoutProps {}
 
 const AuthLayout: FC<AuthLayoutProps> = () => {
-  const { isLoading, isError, isSuccess } = useGetProfileDetailsQuery(null);
+  const { isLoading, isError, isSuccess } = useGetProfileDetailsQuery();
 
   if (isLoading) {
     return (

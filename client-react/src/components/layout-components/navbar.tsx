@@ -12,7 +12,7 @@ interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
   const isScrolled = useScrollTop();
-  const { isLoading, data: user } = useGetProfileDetailsQuery(null);
+  const { isLoading, data: user } = useGetProfileDetailsQuery();
   return (
     <>
       <div
