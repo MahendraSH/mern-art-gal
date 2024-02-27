@@ -17,7 +17,7 @@ import TasksList from "@/pages/usersPages/task/TasksList";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 
-interface AppProps {}
+interface AppProps { }
 
 const App: FC<AppProps> = () => {
   return (
@@ -36,6 +36,7 @@ const App: FC<AppProps> = () => {
           <Route path="/me/profile" element={<ProfilePage />} />
           <Route path="/me/user-dashboard" element={<UserDashboardPage />} />
           <Route path="/me/profile/edit" element={<EditProfile />} />
+          <Route path="/me/profile/edit/image" element={<EditProfile />} />
           {/*  blog routes  */}
           <Route path="/blog/blogs" element={<BlogList />} />
           {/*  task routes  */}

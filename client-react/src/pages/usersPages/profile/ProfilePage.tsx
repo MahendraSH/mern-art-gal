@@ -19,6 +19,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Edit, MoveRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface ProfilePageProps { }
 
@@ -56,7 +58,11 @@ const ProfilePage: FC<ProfilePageProps> = () => {
                   side="top"
                   sideOffset={-80}
                 >
-                  <Edit />
+                  <Link to={"/me/profile/edit/image"}>
+                    <Button size={"icon"} variant={"outline"}>
+                      <Edit />
+                    </Button>
+                  </Link>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
