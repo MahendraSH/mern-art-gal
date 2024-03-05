@@ -1,7 +1,7 @@
 import { Document, Schema, Types, model } from "mongoose";
 import { UserDocument } from "./user-model";
 
-interface Reaction {
+export interface Reaction {
   type:
     | "thumbsUp"
     | "thumbsDown"
@@ -15,7 +15,7 @@ interface Reaction {
   count: number; // Number of times the reaction has been received
 }
 
-interface BlogPostDocument extends Document {
+export interface BlogPostDocument extends Document {
   title: string;
   content: string;
   author: Types.ObjectId | UserDocument;
