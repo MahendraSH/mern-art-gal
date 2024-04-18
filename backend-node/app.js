@@ -7,7 +7,7 @@ const expressFileUpload = require('express-fileupload');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: ['https://art-gal.vercel.app', "http://localhost:3000/"] })); // production
+app.use(cors({ credentials: true, origin: ['https://art-gal.vercel.app', "http://localhost:3000"] })); // production
 // app.use(cors({ credentials: true, origin: 'http://localhost:5173' })); // dev 
 app.use(cookieParser());
 app.use(expressFileUpload());
