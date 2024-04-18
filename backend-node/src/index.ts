@@ -17,10 +17,10 @@ config({ path: ".env" });
 app.use(cookieParser());
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
-const corsOptions: cors.CorsOptions = {
-  origin: "http://localhost:5173",
-  credentials: true, // Allow credentials (cookies)
-};
+  const corsOptions: cors.CorsOptions = {
+    origin: "http://localhost:5173",
+    credentials: true, // Allow credentials (cookies)
+  };
 app.use(cors(corsOptions));
 app.use(ExpressFileUpload());
 
