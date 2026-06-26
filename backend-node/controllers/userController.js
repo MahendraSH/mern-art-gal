@@ -78,7 +78,13 @@ const getUserbyId = CatchAsycErrors(async (req, res, next) => {
 
 //  get user profile deails 
 const getmyProfile = CatchAsycErrors(async (req, res, next) => {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).populate({
+        path: 'favorites',
+        populate: {
+            path: 'user',
+            select: 'name avatar'
+        }
+    });
     if (!user) {
         return next(new ErrorHandler("User not found", 404));
     }

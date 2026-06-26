@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { create } = require('./userModel');
 
 const galarySchema = mongoose.Schema({
     title: {
@@ -27,8 +26,7 @@ const galarySchema = mongoose.Schema({
     category: {
         type: String,
         required: [true, 'category is required'],
-    }
-    ,
+    },
     createAt: {
         type: Date,
         default: Date.now,
@@ -39,9 +37,7 @@ const galarySchema = mongoose.Schema({
         ref: 'User',
         required: true,
     },
-
     views: [{
-
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
@@ -57,15 +53,31 @@ const galarySchema = mongoose.Schema({
             default: 1,
             required: true
         }
-
-    }
-    ],
+    }],
     reqTimes: {
         type: Number,
         default: 0,
         required: true,
-    }
-
+    },
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    comments: [{
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        text: {
+            type: String,
+            required: [true, 'Comment text is required']
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    }]
 });
 
 module.exports = mongoose.model('Galary', galarySchema);

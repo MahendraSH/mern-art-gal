@@ -19,6 +19,9 @@ const Navbar = () => {
               <Link to="/galary" className="text-slate-600 hover:text-slate-800 font-semibold text-sm transition-all">
                 Gallery
               </Link>
+              <Link to="/blogs" className="text-slate-600 hover:text-slate-800 font-semibold text-sm transition-all">
+                Blogs
+              </Link>
               <Link to="/contact" className="text-slate-600 hover:text-slate-800 font-semibold text-sm transition-all">
                 Contact
               </Link>
@@ -27,6 +30,19 @@ const Navbar = () => {
 
           {/* User Profile & Actions */}
           <div className="flex items-center gap-4">
+            {/* Search Trigger */}
+            <button
+              onClick={() => window.dispatchEvent(new Event("toggle-command-palette"))}
+              className="flex items-center gap-2 px-3 py-1.5 text-slate-400 bg-slate-50 hover:bg-slate-100 hover:text-slate-600 rounded-xl border border-slate-200/60 transition-all text-sm group cursor-pointer"
+              title="Search (Cmd + K)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="hidden sm:inline text-xs font-semibold text-slate-500 group-hover:text-slate-700">Search...</span>
+              <kbd className="hidden md:inline-flex items-center justify-center text-[9px] font-sans bg-white border border-slate-200 px-1.5 py-0.5 rounded shadow-sm leading-none text-slate-400 font-bold">⌘K</kbd>
+            </button>
+
             {isAuthenticated ? (
               <div className="dropdown dropdown-end">
                 <label

@@ -19,6 +19,9 @@ import CreatePost from "./Pages/GalaryPages/CreatePost.jsx";
 import Dashborad from "./Pages/Admin/Dashborad.jsx";
 import AllUsers from "./Pages/Admin/AllUsers.jsx";
 import UserDetails from "./Pages/Admin/UserDetails.jsx";
+import Blogs from "./Pages/Blogs/Blogs.jsx";
+import BlogDetail from "./Pages/Blogs/BlogDetail.jsx";
+import CreateBlog from "./Pages/Blogs/CreateBlog.jsx";
 export default function App() {
   // const api = import.meta.env.VITE_API_URL;
   // console.log(api)
@@ -56,6 +59,9 @@ export default function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/myprofile" element={<Myprofile />} />
           <Route path="/post/create" element={<CreatePost />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/create" element={<CreateBlog />} />
         </Route>
         <Route
           element={

@@ -15,6 +15,7 @@ app.use(expressFileUpload());
 //  routes 
 app.use('/api/user', require('./routers/userRoutes.js'));
 app.use('/api/post', require('./routers/GalaryRoutes.js'));
+app.use('/api/blog', require('./routers/BlogRoutes.js'));
 
 // error handling 
 app.use(require('./middlewares/errorController.js'));

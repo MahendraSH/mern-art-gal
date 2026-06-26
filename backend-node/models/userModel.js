@@ -43,7 +43,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'user',
     },
-
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Galary'
+    }]
 });
 
 // encrypt password before saving

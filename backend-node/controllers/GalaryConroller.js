@@ -49,7 +49,10 @@ const getAllGalary = CatchAsycErrors(async (req, res, next) => {
 //   get single galary
 
 const getSingleGalary = CatchAsycErrors(async (req, res, next) => {
-    const galary = await Galary.findById(req.params.id);
+    const galary = await Galary.findById(req.params.id)
+        .populate("user", "name avatar")
+        .populate("comments.user", "name avatar");
+        
     if (!galary) {
         return next(new ErrorHandler("galary not found", 404));
     }
@@ -66,9 +69,15 @@ const getSingleGalary = CatchAsycErrors(async (req, res, next) => {
 
     galary.reqTimes += 1;
     await galary.save({ validateBeforeSave: false });
+    
+    const User = require('../models/userModel.js');
+    const user = await User.findById(req.user._id);
+    const isSaved = user ? user.favorites.includes(galary._id) : false;
+
     res.status(200).json({
         success: true,
         galary,
+        isSaved
     });
 });
 
@@ -123,6 +132,114 @@ const getMyGalary = CatchAsycErrors(async (req, res, next) => {
     });
 });
 
+// Toggle Like Gallery
+const toggleLikeGalary = CatchAsycErrors(async (req, res, next) => {
+    const galary = await Galary.findById(req.params.id);
+    if (!galary) {
+        return next(new ErrorHandler("galary not found", 404));
+    }
+
+    const userId = req.user._id;
+    const isLiked = galary.likes.includes(userId);
+
+    if (isLiked) {
+        galary.likes.pull(userId);
+    } else {
+        galary.likes.push(userId);
+    }
+
+    await galary.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        message: isLiked ? "Unliked artwork" : "Liked artwork",
+        likes: galary.likes,
+    });
+});
+
+// Add Comment to Gallery
+const addCommentGalary = CatchAsycErrors(async (req, res, next) => {
+    const { text } = req.body;
+    if (!text) {
+        return next(new ErrorHandler("Comment text is required", 400));
+    }
+
+    const galary = await Galary.findById(req.params.id);
+    if (!galary) {
+        return next(new ErrorHandler("galary not found", 404));
+    }
+
+    galary.comments.push({
+        user: req.user._id,
+        text,
+    });
+
+    await galary.save({ validateBeforeSave: false });
+
+    const updatedGalary = await Galary.findById(req.params.id).populate("comments.user", "name avatar");
+
+    res.status(200).json({
+        success: true,
+        message: "Comment added successfully",
+        comments: updatedGalary.comments,
+    });
+});
+
+// Delete Comment from Gallery
+const deleteCommentGalary = CatchAsycErrors(async (req, res, next) => {
+    const { commentId } = req.body;
+    const galary = await Galary.findById(req.params.id);
+    if (!galary) {
+        return next(new ErrorHandler("galary not found", 404));
+    }
+
+    const comment = galary.comments.id(commentId);
+    if (!comment) {
+        return next(new ErrorHandler("Comment not found", 404));
+    }
+
+    if (comment.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+        return next(new ErrorHandler("You are not authorized to delete this comment", 403));
+    }
+
+    galary.comments.pull(commentId);
+    await galary.save({ validateBeforeSave: false });
+
+    const updatedGalary = await Galary.findById(req.params.id).populate("comments.user", "name avatar");
+
+    res.status(200).json({
+        success: true,
+        message: "Comment deleted successfully",
+        comments: updatedGalary.comments,
+    });
+});
+
+// Toggle Favorite Artwork
+const toggleFavoriteGalary = CatchAsycErrors(async (req, res, next) => {
+    const User = require('../models/userModel.js');
+    const user = await User.findById(req.user._id);
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }
+
+    const galaryId = req.params.id;
+    const isFavorited = user.favorites.includes(galaryId);
+
+    if (isFavorited) {
+        user.favorites.pull(galaryId);
+    } else {
+        user.favorites.push(galaryId);
+    }
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        message: isFavorited ? "Removed from saved artworks" : "Saved to your favorites",
+        favorites: user.favorites,
+    });
+});
+
 module.exports = {
     createGalary,
     getAllGalary,
@@ -130,4 +247,8 @@ module.exports = {
     updateGalary,
     deleteGalary,
     getMyGalary,
+    toggleLikeGalary,
+    addCommentGalary,
+    deleteCommentGalary,
+    toggleFavoriteGalary,
 };
