@@ -10,10 +10,23 @@ const AllUsers = () => {
   );
   console.log(data);
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
   }
   if (isError) {
-    return { error };
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <div className="alert alert-error max-w-md shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Error: {error?.response?.data?.message || error.message || "Failed to load users"}</span>
+          </div>
+        </div>
+      </div>
+    );
   }
   console.log(data);
   const users = data.users.map((user) => {

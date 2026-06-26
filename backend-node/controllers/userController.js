@@ -1,6 +1,7 @@
 
 const CatchAsycErrors = require('../middlewares/CatchAsyncErrors.js');
 const User = require('../models/userModel.js');
+const Galary = require('../models/GalaryModel.js');
 const ErrorHandler = require('../utils/ErroHandler.js');
 const jwtcooki = require('../utils/Jwtcooki.js');
 const cloudinary = require('cloudinary').v2;
@@ -78,9 +79,25 @@ const getUserbyId = CatchAsycErrors(async (req, res, next) => {
 //  get user profile deails 
 const getmyProfile = CatchAsycErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id);
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }
+    
+    // Fetch stats for this user
+    const postsCount = await Galary.countDocuments({ user: req.user.id });
+    const userPosts = await Galary.find({ user: req.user.id });
+    let totalViews = 0;
+    userPosts.forEach(post => {
+        totalViews += post.reqTimes || 0;
+    });
+
     res.status(200).json({
         success: true,
-        user
+        user,
+        stats: {
+            postsCount,
+            totalViews
+        }
     });
 });
 
@@ -89,7 +106,7 @@ const logout = CatchAsycErrors(async (req, res, next) => {
     res.cookie("loginToken", null, {
         expires: new Date(Date.now()), //current time cooki expire 
 
-        httpOnly: true, httpOnly: true, //accessible only by web server 
+        httpOnly: true,
         secure: true, //https
         sameSite: 'None', //cross-site cookie 
     });
@@ -99,8 +116,83 @@ const logout = CatchAsycErrors(async (req, res, next) => {
     })
 });
 
+// get admin stats -- Admin
+const getAdminStats = CatchAsycErrors(async (req, res, next) => {
+    const totalUsers = await User.countDocuments();
+    const totalAdmins = await User.countDocuments({ role: 'admin' });
+    const totalPosts = await Galary.countDocuments();
+    
+    const posts = await Galary.find();
+    let totalViews = 0;
+    posts.forEach(post => {
+        totalViews += post.reqTimes || 0;
+    });
 
-module.exports = { Register, getAllUsers, getUserbyId, login, getmyProfile, logout };
+    res.status(200).json({
+        success: true,
+        stats: {
+            totalUsers,
+            totalAdmins,
+            totalPosts,
+            totalViews
+        }
+    });
+});
+
+// update User Role -- Admin
+const updateUserRole = CatchAsycErrors(async (req, res, next) => {
+    const newUserData = {
+        role: req.body.role,
+    };
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    if (!user) {
+        return next(new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400));
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "User role updated successfully",
+        user
+    });
+});
+
+// Delete User -- Admin
+const deleteUser = CatchAsycErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        return next(new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400));
+    }
+
+    // Delete user's posts from gallery
+    await Galary.deleteMany({ user: req.params.id });
+
+    // Delete user
+    await User.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+    });
+});
+
+module.exports = {
+    Register,
+    getAllUsers,
+    getUserbyId,
+    login,
+    getmyProfile,
+    logout,
+    getAdminStats,
+    updateUserRole,
+    deleteUser,
+};
 
 
 

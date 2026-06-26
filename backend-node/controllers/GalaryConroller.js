@@ -53,24 +53,17 @@ const getSingleGalary = CatchAsycErrors(async (req, res, next) => {
     if (!galary) {
         return next(new ErrorHandler("galary not found", 404));
     }
-    const id = req.user._id;
-    const isViewed = galary.views.find(
-        (id) => id.user.toString() === id.toString
-    )
-    if (!isViewed) {
-        galary.views.map((view) => {
-            if (view.user.toString() === id.toString()) {
-                view.times += 1;
-            }
-        });
+    const userId = req.user._id;
+    const viewIndex = galary.views.findIndex(
+        (view) => view.user.toString() === userId.toString()
+    );
 
+    if (viewIndex !== -1) {
+        galary.views[viewIndex].times += 1;
+    } else {
+        galary.views.push({ user: userId, date: Date.now(), times: 1 });
     }
-    else {
-        galary.views.push({ user: id, date: Date.now(), times: 1 });
-    }
-    if (galary.reqTimes < 1) {
-        galary.views.push({ user: id, date: Date.now(), times: 1 });
-    }
+
     galary.reqTimes += 1;
     await galary.save({ validateBeforeSave: false });
     res.status(200).json({
@@ -86,6 +79,10 @@ const updateGalary = CatchAsycErrors(async (req, res, next) => {
     let galary = await Galary.findById(req.params.id);
     if (!galary) {
         return next(new ErrorHandler("galary not found", 404));
+    }
+    // Check if the user is the owner or an admin
+    if (galary.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+        return next(new ErrorHandler("You are not authorized to update this post", 403));
     }
     galary = await Galary.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -106,10 +103,23 @@ const deleteGalary = CatchAsycErrors(async (req, res, next) => {
     if (!galary) {
         return next(new ErrorHandler("galary not found", 404));
     }
-    await galary.remove();
+    // Check if the user is the owner or an admin
+    if (galary.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+        return next(new ErrorHandler("You are not authorized to delete this post", 403));
+    }
+    await Galary.findByIdAndDelete(req.params.id);
     res.status(200).json({
         success: true,
         message: "galary deleted successfully",
+    });
+});
+
+// get my galary (posts uploaded by logged-in user)
+const getMyGalary = CatchAsycErrors(async (req, res, next) => {
+    const galary = await Galary.find({ user: req.user._id }).populate("user", "name avatar");
+    res.status(200).json({
+        success: true,
+        galary,
     });
 });
 
@@ -117,7 +127,7 @@ module.exports = {
     createGalary,
     getAllGalary,
     getSingleGalary,
-    getSingleGalary,
     updateGalary,
     deleteGalary,
+    getMyGalary,
 };

@@ -18,6 +18,7 @@ import Myprofile from './components/users/Myprofile.jsx'
 import CreatePost from "./Pages/GalaryPages/CreatePost.jsx";
 import Dashborad from "./Pages/Admin/Dashborad.jsx";
 import AllUsers from "./Pages/Admin/AllUsers.jsx";
+import UserDetails from "./Pages/Admin/UserDetails.jsx";
 export default function App() {
   // const api = import.meta.env.VITE_API_URL;
   // console.log(api)
@@ -67,6 +68,7 @@ export default function App() {
         >
           <Route path="/admin" element={ <Dashborad/>} />
           <Route path="/admin/users" element={ <AllUsers/>} />
+          <Route path="/admin/user/:id" element={ <UserDetails/>} />
         </Route>
         <Route path="/login" element={<SignIn />} />
       </Route>
