@@ -1,6 +1,7 @@
 import daisyui from 'daisyui'
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ['class', '[data-theme="night"]'],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -15,8 +16,8 @@ export default {
     logs: true,
     rtl: false,
     prefix: "",
-    darkTheme: "dark",
-    themes: ["winter"],
+    darkTheme: "night",
+    themes: ["winter", "night"],
 
 
   },

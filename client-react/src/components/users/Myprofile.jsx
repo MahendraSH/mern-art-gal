@@ -63,15 +63,15 @@ const MyProfile = () => {
   const savedPosts = user?.favorites || [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-l from-indigo-50 via-slate-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-l from-indigo-50 via-slate-100 to-gray-200 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300 text-slate-800 dark:text-slate-100">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Profile Card & Stats Section */}
-        <section className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 transition-all duration-300 hover:shadow-2xl">
+        <section className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl">
           <div className="md:flex">
             {/* Left side: Avatar */}
-            <div className="md:flex-shrink-0 bg-gradient-to-br from-indigo-500 to-purple-600 flex justify-center items-center p-8 md:w-80">
+            <div className="md:flex-shrink-0 bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-700 dark:to-purple-800 flex justify-center items-center p-8 md:w-80">
               <div className="avatar">
-                <div className="rounded-full w-48 h-48 ring-4 ring-white ring-offset-4 shadow-2xl transition-transform duration-500 hover:scale-105">
+                <div className="rounded-full w-48 h-48 ring-4 ring-white dark:ring-slate-900 ring-offset-4 dark:ring-offset-slate-900 shadow-2xl transition-transform duration-500 hover:scale-105">
                   <img src={user?.avatar?.url} alt={user?.name} className="object-cover" />
                 </div>
               </div>
@@ -81,26 +81,26 @@ const MyProfile = () => {
             <div className="p-8 flex-grow flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">{user?.name}</h1>
+                  <h1 className="text-3xl font-extrabold text-slate-800 dark:text-white tracking-tight">{user?.name}</h1>
                   <span className={`badge ${user?.role === 'admin' ? 'badge-secondary' : 'badge-primary'} capitalize font-semibold shadow-sm`}>
                     {user?.role}
                   </span>
                 </div>
-                <p className="text-slate-500 font-medium mt-1">{user?.email}</p>
+                <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">{user?.email}</p>
               </div>
 
               <div className="grid grid-cols-3 gap-4 mt-8 max-w-md">
-                <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-center">
-                  <span className="block text-slate-400 text-xs font-bold uppercase tracking-wider">My Artworks</span>
-                  <span className="block text-2xl font-extrabold text-indigo-600 mt-1">{stats?.postsCount || 0}</span>
+                <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 text-center transition-colors duration-300">
+                  <span className="block text-slate-450 dark:text-slate-500 text-xs font-bold uppercase tracking-wider">My Artworks</span>
+                  <span className="block text-2xl font-extrabold text-indigo-600 dark:text-indigo-400 mt-1">{stats?.postsCount || 0}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-center">
-                  <span className="block text-slate-400 text-xs font-bold uppercase tracking-wider">Total Views</span>
-                  <span className="block text-2xl font-extrabold text-emerald-600 mt-1">{stats?.totalViews || 0}</span>
+                <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 text-center transition-colors duration-300">
+                  <span className="block text-slate-450 dark:text-slate-500 text-xs font-bold uppercase tracking-wider">Total Views</span>
+                  <span className="block text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">{stats?.totalViews || 0}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-center">
-                  <span className="block text-slate-400 text-xs font-bold uppercase tracking-wider">Saved</span>
-                  <span className="block text-2xl font-extrabold text-purple-600 mt-1">{savedPosts.length}</span>
+                <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 text-center transition-colors duration-300">
+                  <span className="block text-slate-450 dark:text-slate-500 text-xs font-bold uppercase tracking-wider">Saved</span>
+                  <span className="block text-2xl font-extrabold text-purple-600 dark:text-purple-400 mt-1">{savedPosts.length}</span>
                 </div>
               </div>
             </div>
@@ -110,14 +110,14 @@ const MyProfile = () => {
         {/* Gallery / Artworks Section */}
         <section className="space-y-6">
           {/* Tab Selector & Actions */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-4 gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 dark:border-slate-800 pb-4 gap-4">
             <div className="flex gap-2">
               <button
                 onClick={() => setActiveTab("uploads")}
                 className={`btn btn-sm rounded-xl transition-all ${
                   activeTab === "uploads"
                     ? "btn-primary text-white"
-                    : "btn-ghost text-slate-500 hover:bg-slate-100"
+                    : "btn-ghost text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
                 }`}
               >
                 My Uploads ({myPosts.length})
@@ -127,7 +127,7 @@ const MyProfile = () => {
                 className={`btn btn-sm rounded-xl transition-all ${
                   activeTab === "favorites"
                     ? "btn-primary text-white"
-                    : "btn-ghost text-slate-500 hover:bg-slate-100"
+                    : "btn-ghost text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
                 }`}
               >
                 Saved Artworks ({savedPosts.length})
@@ -147,12 +147,12 @@ const MyProfile = () => {
           {/* Tab Content: Uploads */}
           {activeTab === "uploads" && (
             myPosts.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-3xl border-2 border-dashed border-slate-200 p-8 shadow-sm">
+              <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 shadow-sm transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-slate-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <h3 className="text-lg font-bold text-slate-700">No artworks uploaded yet</h3>
-                <p className="text-sm text-slate-500 mt-1">Start showcasing your masterpieces by uploading your first image!</p>
+                <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">No artworks uploaded yet</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Start showcasing your masterpieces by uploading your first image!</p>
                 <Link to="/post/create" className="btn btn-primary btn-sm rounded-xl mt-4 shadow">
                   Upload Now
                 </Link>
@@ -160,14 +160,14 @@ const MyProfile = () => {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {myPosts.map((post) => (
-                  <div key={post._id} className="card bg-white shadow-lg overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-300 group rounded-2xl">
-                    <figure className="relative h-48 overflow-hidden bg-slate-100">
+                  <div key={post._id} className="card bg-white dark:bg-slate-900/60 shadow-lg overflow-hidden border border-slate-100 dark:border-slate-800/80 hover:shadow-2xl transition-all duration-300 group rounded-2xl">
+                    <figure className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-950">
                       <img
                         src={post?.image?.url}
                         alt={post?.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1">
+                      <div className="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-350 shadow-sm flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -177,16 +177,16 @@ const MyProfile = () => {
                     </figure>
                     <div className="card-body p-5 justify-between">
                       <div>
-                        <h3 className="card-title text-lg font-bold text-slate-800 line-clamp-1 first-letter:capitalize">{post?.title}</h3>
-                        <p className="text-slate-500 text-sm mt-1 line-clamp-2">{post?.discription}</p>
+                        <h3 className="card-title text-lg font-bold text-slate-800 dark:text-white line-clamp-1 first-letter:capitalize">{post?.title}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 line-clamp-2">{post?.discription}</p>
                       </div>
-                      <div className="card-actions justify-end mt-4 pt-4 border-t border-slate-50 flex items-center gap-2">
-                        <Link to={`/galary/${post._id}`} className="btn btn-ghost btn-xs text-indigo-600 hover:bg-indigo-50 rounded-lg">
+                      <div className="card-actions justify-end mt-4 pt-4 border-t border-slate-50 dark:border-slate-800 flex items-center gap-2">
+                        <Link to={`/galary/${post._id}`} className="btn btn-ghost btn-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg">
                           View
                         </Link>
                         <button
                           onClick={() => handleDeletePost(post._id)}
-                          className="btn btn-ghost btn-xs text-rose-600 hover:bg-rose-50 rounded-lg"
+                          className="btn btn-ghost btn-xs text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-lg"
                         >
                           Delete
                         </button>
@@ -201,12 +201,12 @@ const MyProfile = () => {
           {/* Tab Content: Saved Artworks */}
           {activeTab === "favorites" && (
             savedPosts.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-3xl border-2 border-dashed border-slate-200 p-8 shadow-sm">
+              <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 shadow-sm transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-slate-400 mb-4" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
                 </svg>
-                <h3 className="text-lg font-bold text-slate-700">No saved artworks</h3>
-                <p className="text-sm text-slate-500 mt-1">Artworks you save will appear here for easy access.</p>
+                <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">No saved artworks</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Artworks you save will appear here for easy access.</p>
                 <Link to="/galary" className="btn btn-primary btn-sm rounded-xl mt-4 shadow">
                   Browse Gallery
                 </Link>
@@ -214,14 +214,14 @@ const MyProfile = () => {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {savedPosts.map((post) => (
-                  <div key={post._id} className="card bg-white shadow-lg overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-300 group rounded-2xl">
-                    <figure className="relative h-48 overflow-hidden bg-slate-100">
+                  <div key={post._id} className="card bg-white dark:bg-slate-900/60 shadow-lg overflow-hidden border border-slate-100 dark:border-slate-800/80 hover:shadow-2xl transition-all duration-300 group rounded-2xl">
+                    <figure className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-950">
                       <img
                         src={post?.image?.url}
                         alt={post?.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-indigo-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm">
+                      <span className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-indigo-600 dark:text-indigo-400 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm">
                         {post?.category || "Digital Art"}
                       </span>
                     </figure>
@@ -229,22 +229,22 @@ const MyProfile = () => {
                       <div>
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <div className="avatar">
-                            <div className="w-5 h-5 rounded-full border">
+                            <div className="w-5 h-5 rounded-full border border-slate-250 dark:border-slate-750">
                               <img src={post?.user?.avatar?.url} alt={post?.user?.name} className="object-cover" />
                             </div>
                           </div>
-                          <span className="text-[10px] font-bold text-slate-500">{post?.user?.name}</span>
+                          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-450">{post?.user?.name}</span>
                         </div>
-                        <h3 className="card-title text-lg font-bold text-slate-800 line-clamp-1 first-letter:capitalize">{post?.title}</h3>
-                        <p className="text-slate-500 text-sm mt-1 line-clamp-2">{post?.discription}</p>
+                        <h3 className="card-title text-lg font-bold text-slate-800 dark:text-white line-clamp-1 first-letter:capitalize">{post?.title}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 line-clamp-2">{post?.discription}</p>
                       </div>
-                      <div className="card-actions justify-end mt-4 pt-4 border-t border-slate-50 flex items-center gap-2">
-                        <Link to={`/galary/${post._id}`} className="btn btn-ghost btn-xs text-indigo-600 hover:bg-indigo-50 rounded-lg">
+                      <div className="card-actions justify-end mt-4 pt-4 border-t border-slate-50 dark:border-slate-800 flex items-center gap-2">
+                        <Link to={`/galary/${post._id}`} className="btn btn-ghost btn-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg">
                           View
                         </Link>
                         <button
                           onClick={() => handleUnsavePost(post._id)}
-                          className="btn btn-ghost btn-xs text-rose-600 hover:bg-rose-50 rounded-lg"
+                          className="btn btn-ghost btn-xs text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-lg"
                         >
                           Unsave
                         </button>

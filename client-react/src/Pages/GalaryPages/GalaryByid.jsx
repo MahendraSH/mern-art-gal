@@ -87,7 +87,7 @@ const GalaryByid = () => {
 
   if (isError || !galary) {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center bg-slate-50 p-4">
+      <div className="min-h-screen flex flex-col justify-center items-center bg-slate-50 dark:bg-slate-900 p-4 transition-colors duration-300">
         <div className="alert alert-error max-w-md shadow-lg mb-4">
           <span>Error loading artwork: {error?.response?.data?.message || "Artwork not found"}</span>
         </div>
@@ -97,12 +97,12 @@ const GalaryByid = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-slate-200 via-fuchsia-50 to-cyan-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-tr from-slate-200 via-fuchsia-50 to-cyan-100 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300 text-slate-800 dark:text-slate-100">
       <div className="max-w-5xl mx-auto space-y-8">
         
         {/* Back Link */}
         <div className="flex justify-between items-center pb-2">
-          <Link to="/galary" className="btn btn-ghost btn-sm gap-2">
+          <Link to="/galary" className="btn btn-ghost btn-sm gap-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-800/50">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -111,11 +111,11 @@ const GalaryByid = () => {
         </div>
 
         {/* Presentation Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-100 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 items-start transition-colors duration-300">
           
           {/* Artwork Image */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="rounded-2xl overflow-hidden shadow-md max-h-[600px] bg-slate-50 border">
+            <div className="rounded-2xl overflow-hidden shadow-md max-h-[600px] bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800">
               <img src={galary.image?.url} alt={galary.title} className="w-full h-full object-contain mx-auto" />
             </div>
             
@@ -125,8 +125,8 @@ const GalaryByid = () => {
               <button
                 onClick={handleLike}
                 disabled={liking}
-                className={`btn btn-sm gap-2 rounded-xl border border-slate-200 shadow-sm ${
-                  isLiked ? "btn-primary text-white" : "btn-ghost bg-slate-50 text-slate-600 hover:bg-slate-100"
+                className={`btn btn-sm gap-2 rounded-xl border border-slate-200 dark:border-slate-750 shadow-sm ${
+                  isLiked ? "btn-primary text-white" : "btn-ghost bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
                 }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -139,8 +139,8 @@ const GalaryByid = () => {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className={`btn btn-sm gap-2 rounded-xl border border-slate-200 shadow-sm ${
-                  isSaved ? "btn-secondary text-white" : "btn-ghost bg-slate-50 text-slate-600 hover:bg-slate-100"
+                className={`btn btn-sm gap-2 rounded-xl border border-slate-200 dark:border-slate-750 shadow-sm ${
+                  isSaved ? "btn-secondary text-white" : "btn-ghost bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
                 }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -156,7 +156,7 @@ const GalaryByid = () => {
             <div>
               <div className="flex items-center justify-between">
                 <span className="badge badge-primary font-bold">{galary.category || "Digital Art"}</span>
-                <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                <span className="text-xs text-slate-400 dark:text-slate-500 font-medium flex items-center gap-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -165,40 +165,40 @@ const GalaryByid = () => {
                 </span>
               </div>
               
-              <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight mt-2 first-letter:capitalize">
+              <h1 className="text-3xl font-extrabold text-slate-800 dark:text-white tracking-tight mt-2 first-letter:capitalize">
                 {galary.title}
               </h1>
 
               {/* Creator details */}
-              <div className="flex items-center gap-3 mt-4 p-3 bg-slate-50 border border-slate-100 rounded-2xl">
+              <div className="flex items-center gap-3 mt-4 p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 rounded-2xl transition-colors duration-300">
                 <div className="avatar">
-                  <div className="w-10 h-10 rounded-full border">
+                  <div className="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700">
                     <img src={galary.user?.avatar?.url} alt={galary.user?.name} className="object-cover" />
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Created By</p>
-                  <p className="text-sm font-bold text-slate-700">{galary.user?.name}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider">Created By</p>
+                  <p className="text-sm font-bold text-slate-700 dark:text-slate-200">{galary.user?.name}</p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-extrabold text-slate-800 text-sm uppercase tracking-wider text-slate-400">Description</h3>
-              <p className="text-slate-600 leading-relaxed text-sm bg-slate-50 border border-slate-100 p-4 rounded-2xl whitespace-pre-wrap">
+              <h3 className="font-extrabold text-slate-800 dark:text-slate-200 text-sm uppercase tracking-wider">Description</h3>
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm bg-slate-50 dark:bg-slate-800/20 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl whitespace-pre-wrap transition-colors duration-300">
                 {galary.discription}
               </p>
             </div>
 
             {/* Comments block */}
-            <div className="space-y-4 pt-4 border-t border-slate-100">
-              <h3 className="font-bold text-slate-800">Comments ({galary.comments?.length || 0})</h3>
+            <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <h3 className="font-bold text-slate-800 dark:text-slate-250">Comments ({galary.comments?.length || 0})</h3>
               
               {/* Comment submission form */}
               {isAuthenticated ? (
                 <form onSubmit={handleCommentSubmit} className="space-y-2">
                   <textarea
-                    className="textarea textarea-bordered w-full rounded-xl h-16 text-sm resize-none text-slate-700"
+                    className="textarea textarea-bordered w-full rounded-xl h-16 text-sm resize-none text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:border-primary"
                     placeholder="Write a comment..."
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
@@ -211,29 +211,29 @@ const GalaryByid = () => {
                   </div>
                 </form>
               ) : (
-                <div className="bg-slate-50 p-3 rounded-xl text-center text-xs text-slate-500 border border-slate-100">
-                  Please <Link to="/login" className="text-indigo-600 font-bold hover:underline">login</Link> to write comments.
+                <div className="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-xl text-center text-xs text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-slate-800">
+                  Please <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">login</Link> to write comments.
                 </div>
               )}
 
               {/* Comments listing */}
               <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
                 {galary.comments?.length === 0 ? (
-                  <p className="text-slate-400 text-xs text-center py-4">No comments on this artwork yet.</p>
+                  <p className="text-slate-400 dark:text-slate-500 text-xs text-center py-4">No comments on this artwork yet.</p>
                 ) : (
                   galary.comments.map((comment) => (
-                    <div key={comment._id} className="flex gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-100 relative group">
+                    <div key={comment._id} className="flex gap-2.5 bg-slate-50 dark:bg-slate-800/30 p-3 rounded-xl border border-slate-100 dark:border-slate-800 relative group transition-colors duration-300">
                       <div className="avatar">
-                        <div className="w-7 h-7 rounded-full border">
+                        <div className="w-7 h-7 rounded-full border border-slate-200 dark:border-slate-700">
                           <img src={comment.user?.avatar?.url} alt={comment.user?.name} className="object-cover" />
                         </div>
                       </div>
                       <div className="flex-grow space-y-0.5">
                         <div className="flex justify-between items-center">
-                          <span className="text-xs font-bold text-slate-700">{comment.user?.name}</span>
-                          <span className="text-[10px] text-slate-400">{new Date(comment.createdAt).toLocaleDateString()}</span>
+                          <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{comment.user?.name}</span>
+                          <span className="text-[10px] text-slate-400 dark:text-slate-500">{new Date(comment.createdAt).toLocaleDateString()}</span>
                         </div>
-                        <p className="text-xs text-slate-600 leading-relaxed">{comment.text}</p>
+                        <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{comment.text}</p>
                       </div>
 
                       {user && (comment.user?._id === user._id || user.role === "admin") && (

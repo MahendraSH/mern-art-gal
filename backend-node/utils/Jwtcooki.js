@@ -13,7 +13,7 @@ const jwtcooki = async (res, statuscode, user) => {
     };
 
 
-    res.status(200).cookie("loginToken", loginToken, options).json({
+    res.status(statuscode).cookie("loginToken", loginToken, options).json({
         success: true,
         user,
         // loginToken,

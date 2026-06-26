@@ -2,22 +2,27 @@ import React from "react";
 import {  Outlet ,useNavigate } from "react-router-dom";
 import Loading from "../components/Layout/Loading";
 import { useEffect } from "react";
+
 const LoginOnlyRoute = ({loading, isAuthenticated, checkAdmin, user }) => {
    const history = useNavigate();
+   const activeLoading = loading !== undefined ? loading : user?.loading;
+
    useEffect(() => {
-     // if (loading) {
-     //   return <div>Loading...</div>;
-     // } else {
+     if (activeLoading) return;
+
      if (!isAuthenticated) {
        history("/login");
+       return;
      }
-     if (checkAdmin && loading === false) {
-       if (user.user.role !== "admin") history("/");
-     }
-     // }
-   }, [isAuthenticated, loading, checkAdmin, user, history]);
 
-   return <>{loading ? <Loading /> : <Outlet  />}</>;
+     if (checkAdmin) {
+       if (user?.user?.role !== "admin") {
+         history("/");
+       }
+     }
+   }, [isAuthenticated, activeLoading, checkAdmin, user, history]);
+
+   return <>{activeLoading ? <Loading /> : <Outlet  />}</>;
 };
 
 export default LoginOnlyRoute;

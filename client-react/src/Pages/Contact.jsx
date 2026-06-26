@@ -92,23 +92,23 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-fuchsia-50/20 to-indigo-100/40 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-center animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-fuchsia-50/20 to-indigo-100/40 dark:from-slate-950 dark:via-slate-900/50 dark:to-neutral-950 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-center transition-colors duration-300 text-slate-800 dark:text-slate-100 animate-fade-in">
       {/* Background Decorative Blobs */}
-      <div className="absolute top-1/4 -left-36 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-1/4 -right-36 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+      <div className="absolute top-1/4 -left-36 w-96 h-96 bg-purple-300 dark:bg-purple-950/15 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-36 w-96 h-96 bg-indigo-300 dark:bg-indigo-950/15 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100/60 text-indigo-600 text-xs font-bold uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100/60 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-450 text-xs font-bold uppercase tracking-wider shadow-sm">
             🎨 Connect With Us
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-800 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white tracking-tight">
             Let's Talk About{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
               Art & Inspiration
             </span>
           </h1>
-          <p className="text-lg text-slate-500 font-medium leading-relaxed">
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
             Have questions about a masterpiece, interested in showcasing your art, or just want to say hello? Drop us a line.
           </p>
         </div>
@@ -119,22 +119,22 @@ const Contact = () => {
             {/* Info Cards */}
             <div className="space-y-4">
               {/* Email Card */}
-              <div className="flex items-center p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
+              <div className="flex items-center p-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div className="flex-grow min-w-0">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Us</p>
-                  <a href="mailto:hello@artgal.com" className="text-sm sm:text-base font-bold text-slate-700 hover:text-indigo-600 transition-colors block truncate">
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Email Us</p>
+                  <a href="mailto:hello@artgal.com" className="text-sm sm:text-base font-bold text-slate-700 dark:text-slate-200 hover:text-indigo-600 transition-colors block truncate">
                     hello@artgal.com
                   </a>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopy("hello@artgal.com", "Email")}
-                  className="p-2 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-indigo-50/50 transition-colors mr-2 cursor-pointer"
+                  className="p-2 text-slate-400 hover:text-indigo-650 rounded-lg hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 transition-colors mr-2 cursor-pointer"
                   title="Copy email to clipboard"
                 >
                   {copiedText === "Email" ? (
@@ -150,22 +150,22 @@ const Contact = () => {
               </div>
 
               {/* Phone Card */}
-              <div className="flex items-center p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
+              <div className="flex items-center p-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div className="flex-grow min-w-0">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Call Us</p>
-                  <a href="tel:+18005550199" className="text-sm sm:text-base font-bold text-slate-700 hover:text-purple-600 transition-colors block truncate">
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Call Us</p>
+                  <a href="tel:+18005550199" className="text-sm sm:text-base font-bold text-slate-700 dark:text-slate-200 hover:text-purple-600 transition-colors block truncate">
                     +1 (800) 555-0199
                   </a>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopy("+18005550199", "Phone")}
-                  className="p-2 text-slate-400 hover:text-purple-600 rounded-lg hover:bg-purple-50/50 transition-colors mr-2 cursor-pointer"
+                  className="p-2 text-slate-400 hover:text-purple-605 rounded-lg hover:bg-purple-50/50 dark:hover:bg-purple-950/30 transition-colors mr-2 cursor-pointer"
                   title="Copy phone to clipboard"
                 >
                   {copiedText === "Phone" ? (
@@ -181,16 +181,16 @@ const Contact = () => {
               </div>
 
               {/* Location Card */}
-              <div className="flex items-center p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
+              <div className="flex items-center p-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-950/50 text-pink-600 dark:text-pink-400 flex items-center justify-center mr-4 transition-transform group-hover:scale-110">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div className="flex-grow min-w-0">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Visit Gallery</p>
-                  <p className="text-sm sm:text-base font-bold text-slate-700 truncate">
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Visit Gallery</p>
+                  <p className="text-sm sm:text-base font-bold text-slate-700 dark:text-slate-200 truncate">
                     742 Creative Blvd, New York, NY
                   </p>
                 </div>
@@ -198,7 +198,7 @@ const Contact = () => {
             </div>
 
             {/* Premium Art Frame Showcase */}
-            <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white backdrop-blur-sm bg-white/20 transition-all duration-500 hover:scale-[1.02] group">
+            <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white dark:border-slate-800 backdrop-blur-sm bg-white/20 transition-all duration-500 hover:scale-[1.02] group">
               <img
                 src={modernArtGallery}
                 alt="ArtGal Showroom Interior"
@@ -214,24 +214,24 @@ const Contact = () => {
 
           {/* Right Column: Glassmorphic Interactive Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="bg-white/80 backdrop-blur-md border border-white/50 shadow-xl rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300">
+            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-white/50 dark:border-slate-800/80 shadow-xl rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300">
               {isSuccess ? (
                 <div className="text-center py-12 space-y-6">
-                  <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto text-emerald-500 border border-emerald-100 shadow-sm animate-bounce">
+                  <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-950/30 rounded-full flex items-center justify-center mx-auto text-emerald-500 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/40 shadow-sm animate-bounce">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-slate-800">Message Received!</h3>
-                    <p className="text-slate-500 font-medium max-w-sm mx-auto">
+                    <h3 className="text-2xl font-bold text-slate-800 dark:text-white">Message Received!</h3>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium max-w-sm mx-auto">
                       Thank you for reaching out to ArtGal. A gallery curator will respond to your inquiry via email shortly.
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                     <button
                       onClick={() => setIsSuccess(false)}
-                      className="btn btn-outline border-slate-200 hover:bg-slate-50 text-slate-600 hover:text-slate-800 font-bold px-6 py-2.5 rounded-xl transition-all text-sm cursor-pointer"
+                      className="btn btn-outline border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white font-bold px-6 py-2.5 rounded-xl transition-all text-sm cursor-pointer"
                     >
                       Send Another Message
                     </button>
@@ -246,13 +246,13 @@ const Contact = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-1.5">
-                    <h3 className="text-xl font-bold text-slate-800">Send us a Message</h3>
-                    <p className="text-sm text-slate-500 font-medium">Fill out the details below and we will get back to you.</p>
+                    <h3 className="text-xl font-bold text-slate-800 dark:text-white">Send us a Message</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Fill out the details below and we will get back to you.</p>
                   </div>
 
                   {/* Name Input */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Full Name
                     </label>
                     <div className="relative rounded-xl shadow-sm">
@@ -268,9 +268,9 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="e.g. Vincent van Gogh"
                         disabled={isSubmitting}
-                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 hover:bg-slate-100/50 focus:bg-white rounded-xl border ${
-                          errors.name ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 focus:ring-indigo-500 focus:border-indigo-500"
-                        } focus:outline-none focus:ring-2 transition-all text-slate-800 font-medium placeholder-slate-400 text-sm`}
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 dark:bg-slate-850/50 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 rounded-xl border ${
+                          errors.name ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 dark:border-slate-700 focus:ring-indigo-500 focus:border-indigo-500"
+                        } focus:outline-none focus:ring-2 transition-all text-slate-800 dark:text-slate-100 font-medium placeholder-slate-400 dark:placeholder-slate-500 text-sm`}
                       />
                     </div>
                     {errors.name && (
@@ -285,7 +285,7 @@ const Contact = () => {
 
                   {/* Email Input */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Email Address
                     </label>
                     <div className="relative rounded-xl shadow-sm">
@@ -301,9 +301,9 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="e.g. vincent@starrynight.com"
                         disabled={isSubmitting}
-                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 hover:bg-slate-100/50 focus:bg-white rounded-xl border ${
-                          errors.email ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 focus:ring-indigo-500 focus:border-indigo-500"
-                        } focus:outline-none focus:ring-2 transition-all text-slate-800 font-medium placeholder-slate-400 text-sm`}
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 dark:bg-slate-850/50 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 rounded-xl border ${
+                          errors.email ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 dark:border-slate-700 focus:ring-indigo-500 focus:border-indigo-500"
+                        } focus:outline-none focus:ring-2 transition-all text-slate-800 dark:text-slate-100 font-medium placeholder-slate-400 dark:placeholder-slate-500 text-sm`}
                       />
                     </div>
                     {errors.email && (
@@ -318,7 +318,7 @@ const Contact = () => {
 
                   {/* Phone Input */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Phone Number
                     </label>
                     <div className="relative rounded-xl shadow-sm">
@@ -334,9 +334,9 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="e.g. +1 (555) 839-2041"
                         disabled={isSubmitting}
-                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 hover:bg-slate-100/50 focus:bg-white rounded-xl border ${
-                          errors.phone ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 focus:ring-indigo-500 focus:border-indigo-500"
-                        } focus:outline-none focus:ring-2 transition-all text-slate-800 font-medium placeholder-slate-400 text-sm`}
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 dark:bg-slate-855/50 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 rounded-xl border ${
+                          errors.phone ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 dark:border-slate-700 focus:ring-indigo-500 focus:border-indigo-500"
+                        } focus:outline-none focus:ring-2 transition-all text-slate-800 dark:text-slate-100 font-medium placeholder-slate-400 dark:placeholder-slate-500 text-sm`}
                       />
                     </div>
                     {errors.phone && (
@@ -351,7 +351,7 @@ const Contact = () => {
 
                   {/* Message Input */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Message
                     </label>
                     <div className="relative rounded-xl shadow-sm">
@@ -367,9 +367,9 @@ const Contact = () => {
                         rows={4}
                         placeholder="Describe your inquiry, request, or comment here..."
                         disabled={isSubmitting}
-                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 hover:bg-slate-100/50 focus:bg-white rounded-xl border ${
-                          errors.message ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 focus:ring-indigo-500 focus:border-indigo-500"
-                        } focus:outline-none focus:ring-2 transition-all text-slate-800 font-medium placeholder-slate-400 text-sm resize-none`}
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-50/50 dark:bg-slate-855/50 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 rounded-xl border ${
+                          errors.message ? "border-red-400 focus:ring-red-400 focus:border-red-400" : "border-slate-200 dark:border-slate-700 focus:ring-indigo-500 focus:border-indigo-500"
+                        } focus:outline-none focus:ring-2 transition-all text-slate-800 dark:text-slate-100 font-medium placeholder-slate-400 dark:placeholder-slate-500 text-sm resize-none`}
                       />
                     </div>
                     {errors.message && (

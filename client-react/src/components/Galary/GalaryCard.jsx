@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 const GalaryCard = ({ item }) => {
   return (
     <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-      <div className="card bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:-translate-y-1 rounded-2xl overflow-hidden group">
+      <div className="card bg-white dark:bg-slate-900/60 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-800/80 hover:-translate-y-1 rounded-2xl overflow-hidden group">
         {/* Image Frame */}
-        <figure className="relative h-64 overflow-hidden bg-slate-100">
+        <figure className="relative h-64 overflow-hidden bg-slate-100 dark:bg-slate-950">
           <img
             alt={item.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             src={item.image?.url}
           />
           {/* Category Badge */}
-          <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-indigo-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+          <span className="absolute top-4 left-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-indigo-600 dark:text-indigo-400 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
             {item.category || "Digital Art"}
           </span>
           {/* Views Overlay */}
@@ -29,28 +29,28 @@ const GalaryCard = ({ item }) => {
         {/* Content Body */}
         <div className="card-body p-6 flex flex-col justify-between">
           <div>
-            <h3 className="card-title text-xl font-extrabold text-slate-800 tracking-tight line-clamp-1 first-letter:capitalize">
+            <h3 className="card-title text-xl font-extrabold text-slate-800 dark:text-white tracking-tight line-clamp-1 first-letter:capitalize">
               {item.title}
             </h3>
-            <p className="text-slate-500 text-sm mt-2 line-clamp-3">
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2 line-clamp-3">
               {item.discription}
             </p>
           </div>
 
           {/* Footer - Creator Info & Action */}
-          <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2">
               <div className="avatar">
-                <div className="w-8 h-8 rounded-full ring-2 ring-primary/10">
+                <div className="w-8 h-8 rounded-full ring-2 ring-primary/10 dark:ring-primary/20">
                   <img src={item.user?.avatar?.url} alt={item.user?.name} className="object-cover" />
                 </div>
               </div>
-              <span className="text-xs font-bold text-slate-700 line-clamp-1">{item.user?.name}</span>
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 line-clamp-1">{item.user?.name}</span>
             </div>
             
             <Link
               to={`/galary/${item._id}`}
-              className="btn btn-ghost btn-sm text-xs font-bold text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl flex items-center gap-1 transition-all"
+              className="btn btn-ghost btn-sm text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 hover:text-indigo-700 dark:hover:text-indigo-300 rounded-xl flex items-center gap-1 transition-all"
             >
               Details
               <svg
