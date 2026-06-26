@@ -7,7 +7,7 @@ const cloudinary = require('cloudinary').v2;
 
 //  create galary 
 const createGalary = CatchAsycErrors(async (req, res, next) => {
-    const { title, discription, } = req.body;
+    const { title, discription, category } = req.body;
     const _id = req.user._id;
     const cloudUpload = await cloudinary.uploader.upload(req.body.file, {
         folder: "mern/post",
@@ -23,7 +23,7 @@ const createGalary = CatchAsycErrors(async (req, res, next) => {
             public_id: cloudUpload.public_id,
             url: cloudUpload.secure_url,
         },
-        category: " req.body.category",
+        category: category || "Digital Art",
 
         user: _id,
         createdAt: Date.now(),

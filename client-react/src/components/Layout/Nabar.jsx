@@ -3,102 +3,88 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+
   return (
-    <>
-      <nav>
-        <div className="navbar bg-base-200   shadow-base-content  mb-[0.37rem] shadow-md box-border    pb-0 pt-0 mt-0 ">
-          <div className="flex-1">
-            <div className="dropdown  z-50">
-              <label tabIndex={0} className="btn btn-ghost ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to="/contact">Contact</Link>
-                </li>
-
-                <li>
-                  <Link to="/galary">Gallery</Link>
-                </li>
-              </ul>
-            </div>
-
-            <Link to="/" className="normal-case btn btn-ghost ">
-              <span className="text-lg font-medium text-secondary">ArtGal</span>
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo & Links */}
+          <div className="flex items-center gap-8">
+            <Link to="/" className="flex items-center gap-1.5 transition-transform duration-300 active:scale-95">
+              <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 tracking-tight">
+                ArtGal
+              </span>
             </Link>
-            <div className="hidden navbar-end lg:flex">
-              <ul className="px-1 menu menu-horizontal">
-                <li>
-                  <Link to="/contact">Contact</Link>
-                </li>
-
-                <li>
-                  <Link to="/galary">Gallery</Link>
-                </li>
-              </ul>
+            <div className="hidden md:flex items-center gap-6">
+              <Link to="/galary" className="text-slate-600 hover:text-slate-800 font-semibold text-sm transition-all">
+                Gallery
+              </Link>
+              <Link to="/contact" className="text-slate-600 hover:text-slate-800 font-semibold text-sm transition-all">
+                Contact
+              </Link>
             </div>
           </div>
-          <div className="flex-none px-3" id="login profile ">
+
+          {/* User Profile & Actions */}
+          <div className="flex items-center gap-4">
             {isAuthenticated ? (
-              <div className="dropdown dropdown-end z-50">
+              <div className="dropdown dropdown-end">
                 <label
                   tabIndex={0}
-                  className="btn btn-ghost btn-circle avatar online "
+                  className="btn btn-ghost btn-circle avatar online shadow-sm hover:shadow transition-all"
                 >
-                  <div className="w-10 rounded-full">
-                    <img src={user.avatar.url} alt="avtar" />
+                  <div className="w-10 h-10 rounded-full border border-slate-200">
+                    <img src={user?.avatar?.url} alt={user?.name || "avatar"} className="object-cover" />
                   </div>
                 </label>
                 <ul
                   tabIndex={0}
-                  className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                  className="p-2 mt-3 shadow-xl menu menu-compact dropdown-content bg-white border border-slate-100 rounded-2xl w-52 z-[100]"
                 >
+                  <li className="px-4 py-2 border-b border-slate-50">
+                    <span className="block text-slate-800 font-extrabold text-sm line-clamp-1 truncate p-0">
+                      {user?.name}
+                    </span>
+                    <span className="block text-slate-400 text-xs font-medium line-clamp-1 truncate p-0">
+                      {user?.email}
+                    </span>
+                  </li>
                   <li>
-                    <Link to="/myprofile" className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
+                    <Link to="/myprofile" className="font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 mt-1">
+                      My Profile
                     </Link>
                   </li>
-                  {user.role === "admin" ? (
+                  {user?.role === "admin" && (
                     <li>
-                      <Link to="/admin">Admin dashboard</Link>
+                      <Link to="/admin" className="font-semibold text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+                        Admin Dashboard
+                      </Link>
                     </li>
-                  ) : null}
+                  )}
                   <li>
-                    <Link to="/post/create"> Create post</Link>
+                    <Link to="/post/create" className="font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50">
+                      Upload Artwork
+                    </Link>
                   </li>
-                  <li>
-                    <Link to="/logout">Logout</Link>
+                  <li className="border-t border-slate-50 mt-1 pt-1">
+                    <Link to="/logout" className="font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50">
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               </div>
             ) : (
-              <div className="navbar-end">
-                <Link to="/login" className="lowercase btn btn-sm ">
-                  login
-                </Link>
-              </div>
+              <Link
+                to="/login"
+                className="btn btn-primary btn-sm px-5 py-2 rounded-xl shadow-md hover:shadow-lg transition-all"
+              >
+                Login
+              </Link>
             )}
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 
